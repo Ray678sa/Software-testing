@@ -23,8 +23,18 @@ class TestSensors(unittest.TestCase):
     # with incorrect inputs (lower limit 22 and higher limit 18) and
     # expects the method to return False, since the limits are
     # incorrect.
-    def test_check_limits2(self):
-        pass
+  def test_system_main(self):
+        sys.argv = ['sensors_main.py', '15', '20']
+        expected_output = "correct command line arguments.\n"
+        
+        sys.stdout = StringIO()
+        
+        sensors_main.main()
+        output = sys.stdout.getvalue()
+
+        sys.stdout = sys._stdout_
+
+        self.assertEqual(output, expected_output)
         # TODO: implement the actual test case code
     
     # TODO: Implement Test case test_check_limits3 (UT3) according to your
